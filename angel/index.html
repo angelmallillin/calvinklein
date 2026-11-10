@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calvin Klein Free </title>
+  <!-- Google Serif & Sans Fonts matching the reference website -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* --- CSS RESET & ORGANIC EARTH TONE VARIABLES (DEFAULT: DARK) --- */
+    :root {
+      --bg-dark: #121512;
+      --bg-header: #1a1d1a;
+      --bg-card: rgba(28, 33, 28, 0.9);
+      --accent-green: #82a328;
+      --accent-green-hover: #96ba31;
+      --accent-warm: #d8cebe;
+      --text-main: #f9f8f6;
+      --text-muted: #bbb2a4;
+      --border-color: rgba(216, 206, 190, 0.15);
+      --pill-bg: #82a328;
+      --pill-text: #ffffff;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+
+    /* --- LIGHT MODE OVERRIDES --- */
+    body.light-mode {
+      --bg-dark: #f4f1ea;
+      --bg-header: #e9e4d9;
+      --bg-card: #ffffff;
+      --accent-green: #5a7318;
+      --accent-green-hover: #6d8b1e;
+      --accent-warm: #4a4235;
+      --text-main: #1a1d1a;
+      --text-muted: #4a524a;
+      --border-color: rgba(34, 38, 34, 0.18);
+      --pill-bg: #5a7318;
+      --pill-text: #ffffff;
+    }
+
+    body.light-mode .brand-logo .logo-main {
+      color: #1a1d1a;
+    }
+
+    body.light-mode nav a {
+      color: #1a1d1a;
+    }
+
+    body.light-mode .post-card {
+      background: #faf8f5;
+      color: #1a1d1a;
+      border: 1px solid var(--border-color);
+    }
+
+    body.light-mode .post-title {
+      color: #1a1d1a;
+    }
+
+    body.light-mode .post-desc {
+      color: #333333;
+    }
+
+    body.light-mode .site-footer {
+      background: #e2dccc;
+      color: #1a1d1a;
+    }
+
+    body.light-mode .footer-col h4 {
+      color: #1a1d1a;
+    }
+
+    body.light-mode .modal-content-large {
+      background: #ffffff;
+      color: #1a1d1a;
+    }
+
+    body.light-mode .detail-block {
+      background: #fdfcf9;
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* --- HEADER & TOOLBAR --- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-height: 75px;
+      background: var(--bg-header);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 3rem;
+      z-index: 100;
+      transition: background 0.3s ease;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+
+    .brand-logo .logo-main {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .brand-logo .logo-sub {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--accent-warm);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent-green);
+    }
+
+    .theme-toggle-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--accent-green);
+      color: #ffffff;
+      border-color: var(--accent-green);
+    }
+
+    /* --- PROGRESS BAR --- */
+    .progress-bar {
+      position: fixed;
+      top: 75px;
+      left: 0;
+      height: 3px;
+      background: var(--accent-green);
+      width: 20%;
+      transition: width 0.4s ease;
+      z-index: 101;
+    }
+
+    /* --- SLIDE CONTAINER --- */
+    main {
+      margin-top: 75px;
+      flex: 1;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      padding: 3rem 3rem;
+      max-width: 1240px;
+      margin: 0 auto;
+      min-height: calc(100vh - 140px);
+      animation: fadeIn 0.4s ease-in-out forwards;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- OVERVIEW HERO --- */
+    .overview-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      border-radius: 16px;
+      padding: 4.5rem 3.5rem;
+      min-height: 460px;
+      background-color: #121512;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 2.5rem;
+      text-align: left;
+    }
+
+    .overview-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url(landscape.jpg) center / contain no-repeat;
+    }
+
+    .overview-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(18, 21, 18, 0.35) 0%, rgba(18, 21, 18, 0.8) 100%);
+    }
+
+    .hero-badge {
+      color: var(--accent-warm);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 3.6rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 0.8rem;
+      line-height: 1.15;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #d8cebe;
+      font-weight: 400;
+      max-width: 700px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .hero-cta-btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--accent-green);
+      color: #ffffff;
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(130, 163, 40, 0.3);
+    }
+
+    .hero-cta-btn:hover {
+      background: var(--accent-green-hover);
+      transform: translateY(-2px);
+    }
+
+    .explore-section {
+      margin-top: 2rem;
+      padding-top: 1rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2.2rem;
+      color: var(--text-main);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .product-img-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .product-img-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-green);
+      box-shadow: 0 10px 30px rgba(130, 163, 40, 0.2);
+    }
+
+    .card-img-placeholder {
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .card-body {
+      padding: 1.2rem;
+    }
+
+    .card-body h3 {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--text-main);
+      margin-bottom: 0.3rem;
+    }
+
+    .see-all-btn {
+      display: block;
+      margin: 2rem auto 0 auto;
+      padding: 0.85rem 2.5rem;
+      background: var(--accent-green);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .see-all-btn:hover {
+      background: var(--accent-green-hover);
+      transform: scale(1.03);
+    }
+
+    /* --- RELATED POSTS SECTION --- */
+    .related-posts-section {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-top: 1.8rem;
+    }
+
+    .post-card {
+      background: #ffffff;
+      color: #1a202c;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .post-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    .post-img {
+      height: 190px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .post-content {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a202c;
+      line-height: 1.35;
+      margin-bottom: 0.4rem;
+    }
+
+    .post-date {
+      font-size: 0.8rem;
+      color: #718096;
+      margin-bottom: 0.8rem;
+    }
+
+    .post-desc {
+      font-size: 0.88rem;
+      color: #4a5568;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .read-post-link {
+      color: var(--accent-green);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+    }
+
+    .read-post-link:hover {
+      text-decoration: underline;
+    }
+
+    /* --- FEATURE 1: INTERACTIVE SCENT PYRAMID --- */
+    .pyramid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
+    }
+
+    .pyramid-level {
+      width: 100%;
+      max-width: 480px;
+      padding: 1.1rem 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .pyramid-level:hover, .pyramid-level.active {
+      background: rgba(130, 163, 40, 0.15);
+      border-color: var(--accent-green);
+      transform: scale(1.02);
+    }
+
+    .pyramid-level h4 {
+      font-family: var(--font-serif);
+      color: var(--accent-green);
+      font-size: 1.15rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .pyramid-level p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    /* --- SEARCH & FILTER CONTROLS (SLIDE 3) --- */
+    .filter-bar-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.65rem 1rem 0.65rem 2.6rem;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-green);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 0.95rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .search-icon svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent-green);
+      color: #ffffff;
+      border-color: var(--accent-green);
+    }
+
+    /* --- PRODUCT LIST LAYOUT --- */
+    .grid-4-col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .category-column {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .category-banner {
+      height: 190px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.25rem;
+    }
+
+    .category-banner::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.7) 100%);
+    }
+
+    .category-banner h3 {
+      position: relative;
+      z-index: 2;
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.7);
+      letter-spacing: -0.3px;
+    }
+
+    .category-items {
+      padding: 1.2rem 1.25rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .category-items li {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.6rem;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .category-items li:hover {
+      color: var(--accent-green);
+      padding-left: 6px;
+    }
+
+    /* --- TYPOGRAPHY & CARDS --- */
+    h1 { font-family: var(--font-serif); }
+    h2 { font-family: var(--font-serif); font-size: 2.2rem; margin-bottom: 0.8rem; color: var(--text-main); }
+    p.subtitle { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .card h3 {
+      font-family: var(--font-serif);
+      color: var(--text-main);
+      font-size: 1.25rem;
+    }
+
+    /* --- EXPANDED WEBSITE FOOTER --- */
+    .site-footer {
+      background: #0d0f0d;
+      border-top: 1px solid var(--border-color);
+      padding: 3.5rem 4rem 2rem 4rem;
+      margin-top: 4rem;
+      transition: background 0.3s ease;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 2.5rem;
+      max-width: 1240px;
+      margin: 0 auto 2.5rem auto;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-serif);
+      color: var(--text-main);
+      font-size: 1.15rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 25px;
+      height: 2px;
+      background: var(--accent-green);
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-green);
+    }
+
+    /* --- SOCIAL BADGES --- */
+    .social-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .social-badge svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .social-badge:hover {
+      border-color: var(--accent-green);
+      background: rgba(130, 163, 40, 0.15);
+      color: var(--accent-green);
+      transform: translateX(4px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* --- SLIDE NAV FOOTER CONTROLS --- */
+    .slide-nav-bar {
+      height: 65px;
+      background: var(--bg-header);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      transition: background 0.3s ease;
+    }
+
+    .nav-btn {
+      padding: 0.6rem 1.6rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .nav-btn.primary {
+      background: var(--accent-green);
+      color: #ffffff;
+      border: none;
+    }
+
+    .nav-btn.primary:hover {
+      background: var(--accent-green-hover);
+    }
+
+    /* --- MODALS, PILLS & WARNINGS --- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content-large {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.2rem;
+      max-width: 850px;
+      width: 92%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .modal-body-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .modal-img-container {
+      width: 100%;
+      height: 260px;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: rgba(0, 0, 0, 0.25);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .feature-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0 0.8rem 0;
+    }
+
+    .pill-tag {
+      background: var(--pill-bg);
+      color: var(--pill-text);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .detail-block {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .detail-block h4 {
+      font-family: var(--font-serif);
+      color: var(--accent-green);
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .detail-block p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    /* COSTING TABLE STYLES */
+    .costing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+      font-size: 0.85rem;
+      min-width: 280px;
+    }
+
+    .costing-table th, .costing-table td {
+      border: 1px solid var(--border-color);
+      padding: 0.4rem 0.6rem;
+      text-align: left;
+    }
+
+    .costing-table th {
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 600;
+    }
+
+    .costing-table td.num {
+      text-align: right;
+    }
+
+    .costing-table tr.total-row {
+      font-weight: 700;
+      background: rgba(130, 163, 40, 0.15);
+    }
+
+    /* --- RESPONSIVE MEDIA QUERIES --- */
+    @media (max-width: 992px) {
+      header { padding: 0.8rem 1.5rem; }
+      nav { gap: 1rem; }
+      nav a { font-size: 0.85rem; }
+      .slide { padding: 2rem 1.5rem; }
+      .grid-4-col { grid-template-columns: repeat(2, 1fr); }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        height: auto;
+        position: relative;
+      }
+      .header-right {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+      }
+      nav { flex-wrap: wrap; gap: 0.8rem; }
+      .progress-bar { top: 0; }
+      main { margin-top: 0; }
+      .slide { padding: 1.5rem 1rem; }
+      .overview-hero { padding: 2.5rem 1.5rem; }
+      .brand-title { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .section-title { font-size: 1.75rem; }
+      .grid-2, .grid-3, .grid-4, .grid-4-col { grid-template-columns: 1fr; }
+      .modal-body-grid { grid-template-columns: 1fr; }
+      .modal-content-large { padding: 1.25rem; width: 95%; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .site-footer { padding: 2.5rem 1.5rem 1.5rem 1.5rem; }
+      .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
+      .slide-nav-bar { padding: 0 1rem; }
+      .nav-btn { padding: 0.5rem 1rem; font-size: 0.85rem; }
+    }
+
+    /* --- CONTACTS SLIDE --- */
+    .contact-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      text-align: center;
+      padding: 4rem 2.5rem 3.2rem;
+      border-radius: 18px;
+      border: 1px solid var(--border-color);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(130, 163, 40, 0.22), transparent 45%),
+        radial-gradient(circle at 88% 85%, rgba(216, 206, 190, 0.16), transparent 50%),
+        var(--bg-card);
+      margin-bottom: 1.75rem;
+    }
+
+    .contact-deco { position: absolute; inset: 0; z-index: -1; pointer-events: none; color: var(--accent-green); }
+    .contact-deco .deco { position: absolute; fill: none; stroke: currentColor; stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; opacity: 0.32; }
+    .deco-anise-a { width: 190px; left: -45px; top: -50px; animation: slowSpin 70s linear infinite; }
+    .deco-anise-b { width: 120px; right: 7%; bottom: -35px; animation: slowSpin 55s linear infinite reverse; }
+    .deco-sprig-a { width: 230px; right: -20px; top: -10px; opacity: 0.28; }
+    .deco-sprig-b { width: 170px; left: 6%; bottom: -15px; transform: scaleX(-1) rotate(8deg); opacity: 0.25; }
+
+    .mist {
+      position: absolute; border-radius: 50%;
+      background: radial-gradient(circle, rgba(130, 163, 40, 0.18), transparent 70%);
+      filter: blur(6px);
+      animation: mistFloat 9s ease-in-out infinite;
+    }
+    .mist-1 { width: 220px; height: 220px; left: 30%; top: 55%; }
+    .mist-2 { width: 160px; height: 160px; left: 62%; top: -20%; animation-delay: -3s; }
+    .mist-3 { width: 120px; height: 120px; left: 8%; top: 45%; animation-delay: -6s; }
+
+    @keyframes slowSpin { to { transform: rotate(360deg); } }
+    @keyframes mistFloat {
+      0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+      50% { transform: translateY(-18px) scale(1.12); opacity: 1; }
+    }
+
+    .contact-title {
+      font-family: var(--font-serif);
+      font-size: 3.4rem;
+      line-height: 1.12;
+      margin: 0.3rem 0 0.9rem;
+    }
+    .contact-title em { color: var(--accent-green); font-style: italic; font-weight: 400; }
+    .contact-lead { max-width: 620px; margin: 0 auto 1.8rem; color: var(--text-muted); font-size: 1.08rem; line-height: 1.7; }
+
+    .scent-strip { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
+    .scent-chip {
+      padding: 0.5rem 1rem; border-radius: 30px; font-size: 0.82rem; color: var(--text-muted);
+      border: 1px solid var(--border-color); background: rgba(130, 163, 40, 0.08);
+    }
+    .scent-chip b { color: var(--accent-green); letter-spacing: 1.5px; text-transform: uppercase; font-size: 0.7rem; margin-right: 0.4rem; }
+    .scent-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-green); opacity: 0.7; }
+
+    .channel-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .channel-card {
+      display: flex; flex-direction: column; gap: 0.35rem;
+      padding: 1.6rem; border-radius: 14px;
+      background: var(--bg-card); border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .channel-card:hover { transform: translateY(-6px); border-color: var(--accent-green); box-shadow: 0 12px 30px rgba(130, 163, 40, 0.18); }
+    .channel-icon {
+      width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; margin-bottom: 0.6rem;
+      color: var(--accent-green); background: rgba(130, 163, 40, 0.14); border: 1px solid var(--border-color);
+      transition: transform 0.4s ease;
+    }
+    .channel-card:hover .channel-icon { transform: rotate(-8deg) scale(1.08); }
+    .channel-icon svg { width: 22px; height: 22px; }
+    .channel-label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--text-muted); }
+    .channel-value { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.4; word-break: break-word; }
+    .channel-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 1rem; }
+
+    .mini-btn {
+      display: inline-block; padding: 0.5rem 1.05rem; border-radius: 20px; cursor: pointer; text-decoration: none;
+      font-family: var(--font-sans); font-size: 0.82rem; font-weight: 600;
+      color: var(--text-main); background: transparent; border: 1px solid var(--border-color);
+      transition: all 0.25s ease;
+    }
+    .mini-btn:hover { border-color: var(--accent-green); color: var(--accent-green); }
+    .mini-btn.primary { background: var(--accent-green); border-color: var(--accent-green); color: #ffffff; }
+    .mini-btn.primary:hover { background: var(--accent-green-hover); color: #ffffff; }
+
+    .contact-split { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 1.75rem; margin-top: 1.75rem; align-items: start; }
+
+    .contact-form { padding: 2rem; }
+    .contact-form h3 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+    .form-hint { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .topic-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.3rem; }
+    .topic-chip {
+      padding: 0.45rem 0.95rem; border-radius: 20px; cursor: pointer; font-size: 0.82rem; font-weight: 600;
+      color: var(--text-muted); background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color);
+      font-family: var(--font-sans); transition: all 0.25s ease;
+    }
+    .topic-chip:hover, .topic-chip.active { background: var(--accent-green); color: #ffffff; border-color: var(--accent-green); transform: translateY(-2px); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: block; margin-bottom: 1rem; }
+    .form-field > span { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .form-input {
+      width: 100%; padding: 0.8rem 1rem; border-radius: 10px; outline: none;
+      background: var(--bg-dark); border: 1px solid var(--border-color); color: var(--text-main);
+      font-family: var(--font-sans); font-size: 0.92rem; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus { border-color: var(--accent-green); box-shadow: 0 0 0 3px rgba(130, 163, 40, 0.18); }
+    textarea.form-input { resize: vertical; min-height: 120px; }
+    .form-submit { margin-top: 0.4rem; }
+
+    .scent-postcard {
+      position: relative; padding: 2rem 1.8rem 1.6rem; border-radius: 14px; overflow: hidden;
+      background: linear-gradient(160deg, rgba(130, 163, 40, 0.14), transparent 60%), var(--bg-card);
+      border: 1.5px dashed var(--accent-green);
+    }
+    .postcard-stamp { position: absolute; top: 14px; right: 14px; width: 62px; height: 62px; color: var(--accent-green); border: 1px solid var(--border-color); border-radius: 6px; padding: 6px; transform: rotate(5deg); }
+    .postcard-stamp .deco { position: static; width: 100%; fill: none; stroke: currentColor; stroke-width: 2.2; }
+    .postcard-kicker { font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; color: var(--accent-green); margin-bottom: 0.5rem; }
+    .postcard-title { font-family: var(--font-serif); font-size: 1.7rem; margin-bottom: 0.7rem; max-width: 70%; line-height: 1.2; }
+    .postcard-text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem; }
+    .postcard-notes { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .postcard-notes li { display: flex; gap: 0.8rem; align-items: center; padding: 0.6rem 0.8rem; border-radius: 10px; background: rgba(130, 163, 40, 0.07); border: 1px solid var(--border-color); }
+    .postcard-notes li > span { font-size: 1.4rem; }
+    .postcard-notes b { display: block; font-family: var(--font-serif); font-size: 0.95rem; color: var(--text-main); }
+    .postcard-notes small { color: var(--text-muted); font-size: 0.78rem; }
+    .postcard-chat { display: flex; flex-direction: column; gap: 0.6rem; }
+    .postcard-sign { margin-top: 1.4rem; font-family: var(--font-serif); font-style: italic; color: var(--text-muted); font-size: 0.95rem; text-align: right; }
+
+    .toast {
+      position: fixed; left: 50%; bottom: 90px; z-index: 300; transform: translate(-50%, 20px);
+      padding: 0.75rem 1.4rem; border-radius: 30px; opacity: 0; pointer-events: none;
+      background: var(--accent-green); color: #ffffff; font-weight: 600; font-size: 0.9rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); transition: all 0.35s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 992px) {
+      .channel-grid { grid-template-columns: 1fr; }
+      .contact-split { grid-template-columns: 1fr; }
+      .contact-title { font-size: 2.6rem; }
+    }
+    @media (max-width: 768px) {
+      .contact-hero { padding: 3rem 1.25rem 2.4rem; }
+      .contact-title { font-size: 2.1rem; }
+      .contact-lead { font-size: 0.98rem; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form { padding: 1.4rem; }
+      .postcard-title { max-width: 62%; font-size: 1.45rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .deco-anise-a, .deco-anise-b, .mist { animation: none; }
+    }
+
+    /* --- TARGET MARKET SLIDE --- */
+    .tm-overview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2rem; }
+    .tm-stat {
+      display: flex; flex-direction: column; gap: 0.35rem; padding: 1.4rem 1.5rem; border-radius: 14px;
+      background: linear-gradient(160deg, rgba(130, 163, 40, 0.12), transparent 70%), var(--bg-card);
+      border: 1px solid var(--border-color); position: relative; overflow: hidden;
+    }
+    .tm-stat::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--accent-green); }
+    .tm-stat-label { font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 600; color: var(--accent-green); }
+    .tm-stat strong { font-family: var(--font-serif); font-size: 1.45rem; line-height: 1.25; }
+    .tm-stat small { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; }
+
+    .tm-main { display: grid; grid-template-columns: 0.8fr 1.5fr; gap: 2rem; align-items: start; }
+    .tm-side-title { font-family: var(--font-serif); font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .tm-side-hint { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    .tm-seg-list { display: flex; flex-direction: column; gap: 0.7rem; }
+    .tm-seg {
+      display: flex; align-items: center; gap: 0.9rem; width: 100%; text-align: left; cursor: pointer;
+      padding: 0.9rem 1.1rem; border-radius: 12px; font-family: var(--font-sans);
+      background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main);
+      transition: all 0.25s ease;
+    }
+    .tm-seg:hover, .tm-seg.active { background: rgba(130, 163, 40, 0.15); border-color: var(--accent-green); transform: translateX(4px); }
+    .tm-seg-emoji { font-size: 1.7rem; line-height: 1; }
+    .tm-seg b { display: block; font-family: var(--font-serif); font-size: 1.02rem; color: var(--accent-green); }
+    .tm-seg small { display: block; color: var(--text-muted); font-size: 0.8rem; margin-top: 2px; }
+
+    .tm-detail { padding: 2rem; animation: fadeIn 0.35s ease; }
+    .tm-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+    .tm-head-emoji { width: 62px; height: 62px; flex-shrink: 0; display: grid; place-items: center; font-size: 2rem; border-radius: 50%; background: rgba(130, 163, 40, 0.14); border: 1px solid var(--border-color); }
+    .tm-head h3 { font-size: 1.6rem; line-height: 1.2; }
+    .tm-tag { color: var(--accent-green); font-family: var(--font-serif); font-style: italic; margin-top: 0.2rem; }
+    .tm-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.4rem; }
+    .tm-detail h4 { font-family: var(--font-serif); font-size: 0.95rem; color: var(--accent-green); margin-bottom: 0.5rem; letter-spacing: 0.3px; }
+    .tm-detail ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+    .tm-detail li { position: relative; padding-left: 1.1rem; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+    .tm-detail li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); }
+    .tm-prods { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+    .tm-prod {
+      display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.45rem 0.5rem 0.45rem 0.95rem; border-radius: 22px; cursor: pointer;
+      font-family: var(--font-sans); font-size: 0.83rem; font-weight: 600; color: var(--text-main);
+      background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); transition: all 0.25s ease;
+    }
+    .tm-prod b { background: var(--pill-bg); color: var(--pill-text); padding: 0.2rem 0.6rem; border-radius: 14px; font-size: 0.75rem; }
+    .tm-prod:hover { border-color: var(--accent-green); transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-logo" onclick="goToSlide(1)">
+      <span class="logo-main">Calvin Klein Free</span>
+    </div>
+
+    <div class="header-right">
+      <nav>
+        <a onclick="goToSlide(1)" class="active" id="nav-1">Overview</a>
+        <a onclick="goToSlide(2)" id="nav-2">Scent Profile</a>
+        <a onclick="goToSlide(3)" id="nav-3">Target Market</a>
+        <a onclick="goToSlide(4)" id="nav-4">All Products</a>
+        <a onclick="goToSlide(5)" id="nav-5">Contacts</a>
+      </nav>
+
+      <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()">
+        <span id="themeIcon">🌙</span> 
+      </button>
+    </div>
+  </header>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- SLIDES CONTENT -->
+  <main>
+    
+    <!-- SLIDE 1: OVERVIEW PAGE -->
+    <section class="slide active" id="slide-1">
+      <div class="overview-hero">
+        <p class="hero-badge">ORGANIC SKINCARE MADE WITH REAL INGREDIENTS</p>
+        <h1 class="brand-title">Calvin Klein Free</h1>
+        <p class="hero-subtitle">
+          All Products, Costing, Mark Up, Suggested Retail Price (SRP), Profits per unit.
+        </p>
+        <button class="hero-cta-btn" onclick="goToSlide(4)">View all Products</button>
+      </div>
+
+      <!-- EXPLORE OUR PRODUCTS SECTION -->
+      <div class="explore-section">
+        <h2 class="section-title">Explore Our Formulations</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.8rem; font-size: 0.95rem;">
+          Featuring 22 botanical formulations spanning personal care, home scenting, and ambient mists.
+        </p>
+
+        <div class="grid-4">
+          <div class="product-img-card" onclick="openProductByKey('liquid body soap')">
+            <div class="card-img-placeholder" style="background-image: url('soap.jpg');"></div>
+            <div class="card-body">
+              <h3>Bath & Body</h3>
+              <p style="color: var(--text-muted); font-size: 0.82rem;">Natural Soaps, Lotions, Scrubs & Bath Bombs.</p>
+            </div>
+          </div>
+
+          <div class="product-img-card" onclick="openProductByKey('hair shampoo')">
+            <div class="card-img-placeholder" style="background-image: url('1.jpg');"></div>
+            <div class="card-body">
+              <h3>Hair Care</h3>
+              <p style="color: var(--text-muted); font-size: 0.82rem;">Organic Shampoos, Conditioners & Mists.</p>
+            </div>
+          </div>
+
+          <div class="product-img-card" onclick="openProductByKey('face mist hydrating')">
+            <div class="card-img-placeholder" style="background-image: url('faces.jpg');"></div>
+            <div class="card-body">
+              <h3>Facial Care</h3>
+              <p style="color: var(--text-muted); font-size: 0.82rem;">Hydrating Mists, Serums & Sprays.</p>
+            </div>
+          </div>
+
+          <div class="product-img-card" onclick="openProductByKey('scented candle')">
+            <div class="card-img-placeholder" style="background-image: url('aroma.jpg');"></div>
+            <div class="card-body">
+              <h3>Aromatherapy & Home</h3>
+              <p style="color: var(--text-muted); font-size: 0.82rem;">Soy Candles, Essential Oils & Fine Fragrance.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="see-all-btn" onclick="goToSlide(4)">Browse All Products →</button>
+      </div>
+
+      <!-- RELATED POSTS SECTION -->
+      <div class="related-posts-section">
+        <h2 class="section-title">Related Post</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.8rem; font-size: 0.95rem;">
+          Expert guides on product usage, scent layering techniques, and botanical formulation science.
+        </p>
+        
+        <div class="grid-3">
+          <div class="post-card">
+            <div class="post-img" style="background-image: url('salt.jpg');"></div>
+            <div class="post-content">
+              <h3 class="post-title">The Art of Scent Layering: Body Soap, Lotion & Fine Fragrance</h3>
+              <p class="post-date">Posted on October 14, 2026</p>
+              <p class="post-desc">Maximize scent longevity by building a moisture foundation with our Liquid Body Soap and sealing in hydration with Body Lotion.</p>
+              <a href="https://www.google.com/search?q=fragrance+scent+layering+body+soap+lotion+perfume" target="_blank" class="read-post-link">Read article →</a>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="post-content">
+              <h3 class="post-title">Why Alcohol-Free Hair Mists Are Essential for Healthy Hair</h3>
+              <p class="post-date">Posted on August 22, 2026</p>
+              <p class="post-desc">Discover how our micro-emulsified Hair Mist keeps locks fresh and shiny without stripping natural moisture.</p>
+              <a href="https://www.google.com/search?q=alcohol+free+hair+mist+benefits+hair+fragrance" target="_blank" class="read-post-link">Read article →</a>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=600&q=80');"></div>
+            <div class="post-content">
+              <h3 class="post-title">Aromatherapy at Home: Soy Candles & Pure Essential Oil Diffusers</h3>
+              <p class="post-date">Posted on May 11, 2026</p>
+              <p class="post-desc">Transform your living space into a tranquil sanctuary using clean-burning Soy Wax Candles and pure Essential Oil blends.</p>
+              <a href="https://www.google.com/search?q=aromatherapy+soy+candles+essential+oil+diffusers" target="_blank" class="read-post-link">Read article →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: SCENT PROFILE -->
+    <section class="slide" id="slide-2">
+      <h2>CK Free Scent Profile Analysis</h2>
+      <p class="subtitle">Woody Aromatic olfactive family optimized for multi-product stability across all 22 formats.</p>
+
+      <div class="grid-2">
+        <div>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem; font-family: var(--font-serif);">Interactive Scent Pyramid (Click to Explore)</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Click each layer to inspect volatility and botanical composition:</p>
+          
+          <div class="pyramid-container">
+            <div class="pyramid-level active" id="pyr-top" onclick="selectPyramid('top')">
+              <h4>🍋 Top Notes (High Volatility)</h4>
+              <p>Juniper Berries, Star Anise, Wormwood </p>
+            </div>
+            <div class="pyramid-level" id="pyr-heart" onclick="selectPyramid('heart')">
+              <h4>☕ Heart Notes (Medium Volatility)</h4>
+              <p>Suede, Coffee, Tobacco, Cascarilla </p>
+            </div>
+            <div class="pyramid-level" id="pyr-base" onclick="selectPyramid('base')">
+              <h4>🌲 Base Notes (Low Volatility / Fixative)</h4>
+              <p>Cedarwood, Oak, Patchouli </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="pyramid-detail-box" style="display: flex; flex-direction: column; justify-content: center;">
+          <h3 id="p-title" style="color: var(--accent-green); font-size: 1.4rem; margin-bottom: 0.8rem;">Top Notes: Immediate Fresh Impact</h3>
+          <p id="p-desc" style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+            Provides immediate fresh, aromatic top impact. Highly volatile molecules ideal for hair mists, face mists, and room fresheners.
+          </p>
+          <div style="background: rgba(130, 163, 40, 0.1); border: 1px solid var(--border-color); padding: 0.75rem; border-radius: 8px;">
+            <strong style="font-size: 0.85rem;">Laboratory Note:</strong> <span id="p-lab" style="color: var(--text-muted); font-size: 0.85rem;">Evaporates within 15–30 minutes on skin; optimized for top notes in spray formats.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: TARGET MARKET -->
+    <section class="slide" id="slide-3">
+      <h2>Target Market</h2>
+      <p class="subtitle">Who Calvin Klein Free is made for &mdash; and which products speak to each of them.</p>
+
+      <div class="tm-overview">
+        <div class="tm-stat">
+          <span class="tm-stat-label">Core market</span>
+          <strong>Everyday scent lovers</strong>
+          <small>Adults who want a clean, woody-aromatic scent from head to toe.</small>
+        </div>
+        <div class="tm-stat">
+          <span class="tm-stat-label">Where we start</span>
+          <strong>Metro Manila &amp; nearby</strong>
+          <small>Home base: Caloocan City.</small>
+        </div>
+        <div class="tm-stat">
+          <span class="tm-stat-label">Price positioning</span>
+          <strong id="tm-price-range">&mdash;</strong>
+          <small>SRP across all 22 products &mdash; affordable everyday luxury.</small>
+        </div>
+      </div>
+
+      <div class="tm-main">
+        <div>
+          <h3 class="tm-side-title">Customer Segments</h3>
+          <p class="tm-side-hint">Click a segment to see who they are and what to offer them:</p>
+          <div class="tm-seg-list" id="tm-seg-list"></div>
+        </div>
+        <div class="card tm-detail" id="tm-detail"></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: ALL 22 PRODUCTS CATEGORIZED LIST -->
+    <section class="slide" id="slide-4">
+      <h2>Calvin Klein Free Product Portfolio</h2>
+      <p class="subtitle">Click on ANY of the products below to view its formulation, costing, and specs.</p>
+
+      <div class="filter-bar-container">
+        <div class="search-box">
+          <span class="search-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search products (e.g., Mist, Soap, Candle)..." oninput="filterProducts()">
+        </div>
+
+        <div class="filter-tabs">
+          <button class="filter-btn active" onclick="filterCategory('all', this)">All </button>
+          <button class="filter-btn" onclick="filterCategory('bath', this)">Bath & Body</button>
+          <button class="filter-btn" onclick="filterCategory('hair', this)">Hair Care</button>
+          <button class="filter-btn" onclick="filterCategory('face', this)">Facial Care</button>
+          <button class="filter-btn" onclick="filterCategory('home', this)">Aromatherapy</button>
+        </div>
+      </div>
+
+      <div class="grid-4-col" id="productsGrid">
+        
+        <!-- BATH & BODY -->
+        <div class="category-column" data-cat="bath">
+          <div class="category-banner" style="background-image: url(bar.png);">
+            <h3>Bath & Body</h3>
+          </div>
+          <ul class="category-items">
+            <li data-name="liquid body soap" onclick="openProductByKey('liquid body soap')">Liquid Body Soap</li>
+            <li data-name="body soap bar" onclick="openProductByKey('body soap bar')">Body Soap Bar</li>
+            <li data-name="body lotion" onclick="openProductByKey('body lotion')">Body Lotion</li>
+            <li data-name="hand cream" onclick="openProductByKey('hand cream')">Hand Cream</li>
+            <li data-name="bath bomb" onclick="openProductByKey('bath bomb')">Bath Bomb</li>
+            <li data-name="body scrub" onclick="openProductByKey('body scrub')">Body Scrub</li>
+            <li data-name="hand sanitizer" onclick="openProductByKey('hand sanitizer')">Hand Sanitizer</li>
+            <li data-name="hand sanitizer (spray on)" onclick="openProductByKey('hand sanitizer (spray on)')">Hand Sanitizer (Spray On)</li>
+            <li data-name="hand soap" onclick="openProductByKey('hand soap')">Hand Soap</li>
+            <li data-name="feminine spray" onclick="openProductByKey('feminine spray')">Feminine Spray</li>
+            <li data-name="masculine wash" onclick="openProductByKey('masculine wash')">Masculine Wash</li>
+            <li data-name="roll on deodorant" onclick="openProductByKey('roll on deodorant')">Roll-On Deodorant</li>
+          </ul>
+        </div>
+
+        <!-- HAIR -->
+        <div class="category-column" data-cat="hair">
+          <div class="category-banner" style="background-image: url(hair.png);">
+            <h3>Hair</h3>
+          </div>
+          <ul class="category-items">
+            <li data-name="hair shampoo" onclick="openProductByKey('hair shampoo')">Hair Shampoo</li>
+            <li data-name="conditioner" onclick="openProductByKey('conditioner')">Conditioner</li>
+            <li data-name="hair mist" onclick="openProductByKey('hair mist')">Hair Mist</li>
+            <li data-name="dry shampoo powder" onclick="openProductByKey('dry shampoo powder')">Dry Shampoo Powder</li>
+          </ul>
+        </div>
+
+        <!-- FACIAL CARE -->
+        <div class="category-column" data-cat="face">
+          <div class="category-banner" style="background-image: url(mist.png);">
+            <h3>Facial Care</h3>
+          </div>
+          <ul class="category-items">
+            <li data-name="face mist hydrating" onclick="openProductByKey('face mist hydrating')">Face Mist - Hydrating</li>
+          </ul>
+        </div>
+
+        <!-- AROMATHERAPY -->
+        <div class="category-column" data-cat="home">
+          <div class="category-banner" style="background-image: url(oil.png);">
+            <h3>Aromatherapy</h3>
+          </div>
+          <ul class="category-items">
+            <li data-name="fine fragrance" onclick="openProductByKey('fine fragrance')">Fine Fragrance</li>
+            <li data-name="scented candle" onclick="openProductByKey('scented candle')">Scented Candle</li>
+            <li data-name="essential oil" onclick="openProductByKey('essential oil')">Essential Oil</li>
+            <li data-name="pillow mist room linen" onclick="openProductByKey('pillow mist room linen')">Pillow Mist</li>
+            <li data-name="essential air freshener car" onclick="openProductByKey('essential air freshener car')">Car Air Freshener</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SLIDE 5: CONTACTS -->
+    <section class="slide" id="slide-5">
+
+      <!-- HERO -->
+      <div class="contact-hero">
+        <div class="contact-deco" aria-hidden="true">
+          <svg class="deco deco-anise-a" viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50 50)"><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(0)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(45)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(90)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(135)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(180)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(225)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(270)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(315)"/><circle r="4"/></g></svg>
+          <svg class="deco deco-anise-b" viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50 50)"><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(0)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(45)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(90)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(135)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(180)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(225)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(270)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(315)"/><circle r="4"/></g></svg>
+          <svg class="deco deco-sprig-a" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 92 C 38 64, 62 40, 92 10"/><path d="M12.0 88.0 l-9 -5"/><path d="M12.0 88.0 l5 -9"/><path d="M24.7 75.3 l-9 -5"/><path d="M24.7 75.3 l5 -9"/><path d="M37.3 62.7 l-9 -5"/><path d="M37.3 62.7 l5 -9"/><path d="M50.0 50.0 l-9 -5"/><path d="M50.0 50.0 l5 -9"/><path d="M62.7 37.3 l-9 -5"/><path d="M62.7 37.3 l5 -9"/><path d="M75.3 24.7 l-9 -5"/><path d="M75.3 24.7 l5 -9"/><path d="M88.0 12.0 l-9 -5"/><path d="M88.0 12.0 l5 -9"/></svg>
+          <svg class="deco deco-sprig-b" viewBox="0 0 100 100" aria-hidden="true"><path d="M10 92 C 38 64, 62 40, 92 10"/><path d="M12.0 88.0 l-9 -5"/><path d="M12.0 88.0 l5 -9"/><path d="M24.7 75.3 l-9 -5"/><path d="M24.7 75.3 l5 -9"/><path d="M37.3 62.7 l-9 -5"/><path d="M37.3 62.7 l5 -9"/><path d="M50.0 50.0 l-9 -5"/><path d="M50.0 50.0 l5 -9"/><path d="M62.7 37.3 l-9 -5"/><path d="M62.7 37.3 l5 -9"/><path d="M75.3 24.7 l-9 -5"/><path d="M75.3 24.7 l5 -9"/><path d="M88.0 12.0 l-9 -5"/><path d="M88.0 12.0 l5 -9"/></svg>
+          <span class="mist mist-1"></span><span class="mist mist-2"></span><span class="mist mist-3"></span>
+        </div>
+        <p class="hero-badge">GET IN TOUCH</p>
+        <h2 class="contact-title">Let&rsquo;s Talk <em>Scent</em></h2>
+        <p class="contact-lead">
+          Curious about a formulation, pricing, or a custom blend? Send us a note and let&rsquo;s create something that smells like you.
+        </p>
+        <div class="scent-strip" title="Calvin Klein Free &mdash; Woody Aromatic">
+          <span class="scent-chip"><b>Top</b> Juniper &middot; Star Anise</span>
+          <span class="scent-dot"></span>
+          <span class="scent-chip"><b>Heart</b> Suede &middot; Coffee</span>
+          <span class="scent-dot"></span>
+          <span class="scent-chip"><b>Base</b> Cedarwood &middot; Oak</span>
+        </div>
+      </div>
+
+      <!-- CHANNEL CARDS -->
+      <div class="channel-grid">
+        <div class="channel-card">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <span class="channel-label">Write to us</span>
+          <span class="channel-value">lab.formula@calvinklein.com</span>
+          <div class="channel-actions">
+            <a class="mini-btn primary" href="mailto:lab.formula@calvinklein.com">Send email</a>
+            <button class="mini-btn" type="button" onclick="copyText('lab.formula@calvinklein.com','Email')">Copy</button>
+          </div>
+        </div>
+
+        <div class="channel-card">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <span class="channel-label">Call or text</span>
+          <span class="channel-value">+63 917 123 4567</span>
+          <div class="channel-actions">
+            <a class="mini-btn primary" href="tel:+639171234567">Call now</a>
+            <button class="mini-btn" type="button" onclick="copyText('+63 917 123 4567','Number')">Copy</button>
+          </div>
+        </div>
+
+        <div class="channel-card">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <span class="channel-label">Find our lab</span>
+          <span class="channel-value">124 Blk Bagumbong Greenfeilds, Caloocan City</span>
+          <div class="channel-actions">
+            <a class="mini-btn primary" href="https://www.google.com/maps/search/?api=1&amp;query=124+Blk+Bagumbong+Greenfeilds+Caloocan+City" target="_blank" rel="noopener">Open in Maps</a>
+            <button class="mini-btn" type="button" onclick="copyText('124 Blk Bagumbong Greenfeilds, Caloocan City','Address')">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM + SCENT POSTCARD -->
+      <div class="contact-split">
+        <form class="contact-form card" id="inquiryForm" onsubmit="sendInquiry(event)">
+          <h3>Send us a scent note</h3>
+          <p class="form-hint">Pick a topic or write your own &mdash; it opens as an email to our lab.</p>
+
+          <div class="topic-chips" role="group" aria-label="Quick topics">
+            <button type="button" class="topic-chip" onclick="setTopic(this,'Pricing &amp; SRP','Hi! I would like to know more about your pricing and suggested retail price for ')">&#128176; Pricing &amp; SRP</button>
+            <button type="button" class="topic-chip" onclick="setTopic(this,'Wholesale / Reselling','Hello! I am interested in reselling. Can you share details about ')">&#128230; Reselling</button>
+            <button type="button" class="topic-chip" onclick="setTopic(this,'Custom scent','Hi! I would love a custom scent inspired by ')">&#129492; Custom scent</button>
+            <button type="button" class="topic-chip" onclick="setTopic(this,'Product inquiry','Hello! I have a question about your ')">&#127807; Product question</button>
+          </div>
+
+          <div class="form-row">
+            <label class="form-field">
+              <span>Your name</span>
+              <input class="form-input" type="text" id="cf-name" placeholder="Juan Dela Cruz" required>
+            </label>
+            <label class="form-field">
+              <span>Email or mobile</span>
+              <input class="form-input" type="text" id="cf-contact" placeholder="you@email.com / 09XX XXX XXXX" required>
+            </label>
+          </div>
+
+          <label class="form-field">
+            <span>Topic</span>
+            <select class="form-input" id="cf-topic">
+              <option>Product inquiry</option>
+              <option>Pricing &amp; SRP</option>
+              <option>Wholesale / Reselling</option>
+              <option>Custom scent</option>
+              <option>Something else</option>
+            </select>
+          </label>
+
+          <label class="form-field">
+            <span>Your message</span>
+            <textarea class="form-input" id="cf-message" rows="5" placeholder="Tell us what scent story you have in mind&hellip;" required></textarea>
+          </label>
+
+          <button type="submit" class="hero-cta-btn form-submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;vertical-align:-3px;margin-right:6px"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Send message</button>
+        </form>
+
+        <aside class="scent-postcard">
+          <div class="postcard-stamp" aria-hidden="true"><svg class="deco stamp-anise" viewBox="0 0 100 100" aria-hidden="true"><g transform="translate(50 50)"><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(0)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(45)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(90)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(135)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(180)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(225)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(270)"/><ellipse cx="0" cy="-24" rx="8" ry="21" transform="rotate(315)"/><circle r="4"/></g></svg></div>
+          <p class="postcard-kicker">A note from the lab</p>
+          <h3 class="postcard-title">Calvin Klein Free</h3>
+          <p class="postcard-text">
+            Woody aromatic, made with real ingredients &mdash; from fine fragrance to bath bombs, one signature scent across all 22 products.
+          </p>
+
+          <ul class="postcard-notes">
+            <li><span>&#127819;</span><div><b>Top</b><small>Juniper Berries, Star Anise, Wormwood</small></div></li>
+            <li><span>&#9749;</span><div><b>Heart</b><small>Suede, Coffee, Tobacco, Cascarilla</small></div></li>
+            <li><span>&#127794;</span><div><b>Base</b><small>Cedarwood, Oak, Patchouli</small></div></li>
+          </ul>
+
+          <p class="postcard-kicker" style="margin-top:1.4rem;">Prefer to chat?</p>
+          <div class="postcard-chat">
+            <a href="viber://chat?number=%2B639171234567" class="social-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.38 4.62C17.41 2.65 14.78 1.57 12 1.57c-5.78 0-10.43 4.65-10.43 10.43 0 1.85.48 3.65 1.39 5.23L1.57 22.43l5.37-1.38c1.53.84 3.27 1.28 5.06 1.28 5.78 0 10.43-4.65 10.43-10.43 0-2.78-1.08-5.41-3.05-7.38zM12 20.73c-1.61 0-3.19-.43-4.57-1.25l-.33-.2-3.39.87.91-3.31-.22-.35c-.9-1.44-1.38-3.1-1.38-4.81 0-4.9 3.99-8.89 8.89-8.89 2.37 0 4.6 1.02 6.28 2.7 1.68 1.68 2.7 3.91 2.7 6.28 0 4.9-3.99 8.89-8.89 8.89z"/></svg> Viber</a>
+            <a href="https://wa.me/639171234567" target="_blank" rel="noopener" class="social-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.237a9.98 9.98 0 004.779 1.221h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.038-5.176-2.925-7.062A9.925 9.925 0 0012.012 2z"/></svg> WhatsApp</a>
+          </div>
+          <p class="postcard-sign">&mdash; Calvin Klein Free Lab</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  </main>
+
+  <!-- WEBSITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <div class="brand-logo" style="margin-bottom: 0.8rem;">
+          <span class="logo-main">Calvin Klein Free</span>
+          <span class="logo-sub">Organic Scent Collection</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.6;">
+          Transforming raw laboratory fragrance oils into sustainable, organic commercial product collections.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Bath & Body</h4>
+        <ul class="footer-links">
+          <li><a onclick="openProductByKey('liquid body soap')">Liquid Body Soap</a></li>
+          <li><a onclick="openProductByKey('body lotion')">Body Lotion</a></li>
+          <li><a onclick="openProductByKey('body scrub')">Body Scrub</a></li>
+          <li><a onclick="openProductByKey('hand sanitizer (spray on)')">Hand Sanitizer (Spray On)</a></li>
+          <li><a onclick="openProductByKey('masculine wash')">Masculine Wash</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Hair & Face</h4>
+        <ul class="footer-links">
+          <li><a onclick="openProductByKey('hair shampoo')">Hair Shampoo</a></li>
+          <li><a onclick="openProductByKey('conditioner')">Conditioner</a></li>
+          <li><a onclick="openProductByKey('hair mist')">Hair Mist</a></li>
+          <li><a onclick="openProductByKey('face mist hydrating')">Hydrating Face Mist</a></li>
+          <li><a onclick="openProductByKey('fine fragrance')">Fine Fragrance</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Connect & Socials</h4>
+        <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+          <a href="mailto:lab.formulation@calvinklein.com" class="social-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            Email Us
+          </a>
+          <a href="https://viber.com" target="_blank" class="social-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.38 4.62C17.41 2.65 14.78 1.57 12 1.57c-5.78 0-10.43 4.65-10.43 10.43 0 1.85.48 3.65 1.39 5.23L1.57 22.43l5.37-1.38c1.53.84 3.27 1.28 5.06 1.28 5.78 0 10.43-4.65 10.43-10.43 0-2.78-1.08-5.41-3.05-7.38zM12 20.73c-1.61 0-3.19-.43-4.57-1.25l-.33-.2-3.39.87.91-3.31-.22-.35c-.9-1.44-1.38-3.1-1.38-4.81 0-4.9 3.99-8.89 8.89-8.89 2.37 0 4.6 1.02 6.28 2.7 1.68 1.68 2.7 3.91 2.7 6.28 0 4.9-3.99 8.89-8.89 8.89z"/>
+            </svg>
+            Viber 
+          </a>
+          <a href="https://whatsapp.com" target="_blank" class="social-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.237a9.98 9.98 0 004.779 1.221h.004c5.505 0 9.988-4.478 9.989-9.984 0-2.669-1.038-5.176-2.925-7.062A9.925 9.925 0 0012.012 2z"/>
+            </svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Calvin Klein Free. All Rights Reserved.</span>
+      <span style="color: var(--accent-green); font-weight: 600;">Developed by Angel Mallillin</span>
+    </div>
+  </footer>
+
+  <!-- SLIDE CONTROLS BOTTOM BAR -->
+  <div class="slide-nav-bar">
+    <span id="slide-counter" style="color: var(--text-muted); font-weight: 600;">SLIDE 01 / 05</span>
+    <div>
+      <button class="nav-btn" onclick="prevSlide()">← Previous</button>
+      <button class="nav-btn primary" onclick="nextSlide()">Next →</button>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal" id="productDetailModal">
+    <div class="modal-content-large">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <div>
+          <h2 id="mName" style="font-size: 1.8rem; margin-bottom: 0;">Product Name</h2>
+          <span style="color: var(--accent-green); font-size: 0.85rem; font-weight: 600;">CALVIN KLEIN FREE FORMULATION & COSTING SPEC</span>
+        </div>
+        <button onclick="closeDetailModal()" class="btn-icon" style="font-size: 1.2rem; padding: 0.3rem 0.8rem;">✕</button>
+      </div>
+
+      <div class="modal-body-grid">
+        <div>
+          <div id="mImg" class="modal-img-container"></div>
+          <div class="feature-pills" id="mPillsContainer"></div>
+          
+          <div class="detail-block">
+            <h4>What is this product for?</h4>
+            <p id="mWhatFor">Product use case details...</p>
+          </div>
+        </div>
+
+        <div>
+          <h4 style="margin-bottom: 0.8rem; font-size: 1rem; font-family: var(--font-serif);">Technical Specifications & Costing</h4>
+          <div id="mCostingContainer"></div>
+        </div>
+      </div>
+
+      <button class="nav-btn primary" style="width: 100%; margin-top: 1rem;" onclick="closeDetailModal()">Done & Close</button>
+    </div>
+  </div>
+
+  <!-- ARTICLE MODAL -->
+  <div class="modal" id="postDetailModal">
+    <div class="modal-content-large" style="max-width: 650px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+        <div>
+          <h2 id="pTitle" style="font-size: 1.5rem; margin-bottom: 0;">Article Title</h2>
+          <span id="pDate" style="color: var(--accent-green); font-size: 0.85rem; font-weight: 600;">Posted on Date</span>
+        </div>
+        <button onclick="closePostModal()" class="btn-icon" style="font-size: 1.2rem; padding: 0.3rem 0.8rem;">✕</button>
+      </div>
+
+      <div id="pImg" class="modal-img-container" style="margin: 1rem 0;"></div>
+      <div class="detail-block">
+        <p id="pDesc" style="font-size: 0.95rem; line-height: 1.6; white-space: pre-line;"></p>
+      </div>
+
+      <button class="nav-btn primary" style="width: 100%; margin-top: 1rem;" onclick="closePostModal()">Close Article</button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 5;
+    let selectedCategory = 'all';
+
+    /* THEME TOGGLE FUNCTION */
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('light-mode');
+      const isLight = body.classList.contains('light-mode');
+      
+      document.getElementById('themeIcon').innerText = isLight ? '☀️' : '🌙';
+      const themeText = document.getElementById('themeText');
+      if (themeText) themeText.innerText = isLight ? 'Light' : 'Dark';
+    }
+
+    /* HELPER FUNCTION TO GENERATE COSTING TABLE HTML
+       Alis ang Price sa markup row; Percentage (%) nalang ang ipinapakita. */
+    const MARKUP_RATE = 0.5;
+
+    function createCostingTable(basePrice, packaging, o = {}) {
+      const totalCost = o.total !== undefined ? o.total : basePrice + packaging;
+      const srp = o.srp !== undefined ? o.srp : totalCost * (1 + MARKUP_RATE);
+      const profitPerUnit = o.profit !== undefined ? o.profit : srp - totalCost;
+      
+      // Calculate dynamic markup % based on Total Cost and Profit if not explicitly passed
+      const calculatedMarkupPct = ((profitPerUnit / totalCost) * 100).toFixed(2);
+      const markupLabel = o.markupLabel || `Markup (${calculatedMarkupPct}%)`;
+      const peso = (n) => '₱' + n.toFixed(2);
+
+      return `
+        <table class="costing-table">
+          <thead>
+            <tr>
+              <th>Costing Item Breakdown</th>
+              <th class="num">Amount (₱)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Base Price</td>
+              <td class="num">${peso(basePrice)}</td>
+            </tr>
+            <tr>
+              <td>Packaging</td>
+              <td class="num">${peso(packaging)}</td>
+            </tr>
+            <tr class="total-row">
+              <td>Total Cost</td>
+              <td class="num">${peso(totalCost)}</td>
+            </tr>
+            <tr>
+              <td>${markupLabel}</td>
+              <td class="num">&mdash;</td>
+            </tr>
+            <tr>
+              <td>SRP</td>
+              <td class="num">${peso(srp)}</td>
+            </tr>
+            <tr class="total-row" style="background: rgba(130, 163, 40, 0.25);">
+              <td><strong>Profit per Unit</strong></td>
+              <td class="num"><strong>${peso(profitPerUnit)}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    /* PRODUCT DATABASE WITH UPDATED COSTING & SRPs */
+    const productDatabase = {
+      "liquid body soap": {
+        name: "Liquid Body Soap",
+        img: "shower.jpg",
+        pills: ["Body Wash", "Nourishing", "Gentle", "pH Balanced"],
+        costingHtml: createCostingTable(5.52, 20, { total: 25.52, srp: 85, profit: 59.48, markupLabel: 'Markup (233.07%)' }),
+        whatFor: "Calvin Klein Free Liquid Body Soap is formulated for gentle, everyday bathing and cleansing. Suitable for sensitive skin to help soothe irritation, lock in hydration, and prevent dryness.\n*Recommended for daily shower use."
+      },
+      "body soap bar": {
+        name: "Body Soap Bar",
+        img: "soaps.jpg",
+        pills: ["Handcrafted Soap", "Deep Cleansing", "Soothing", "Natural Oils"],
+        costingHtml: createCostingTable(22.30, 20, { total: 42.30, srp: 63.45, profit: 21.15 }),
+        whatFor: "Cold-process body soap bar engineered to cleanse away dirt and impurities while maintaining skin oil balance and aromatic fresh feel.\n*Suitable for daily face and body bathing."
+      },
+      "body lotion": {
+        name: "Body Lotion",
+        img: "lotion.jpg",
+        pills: ["Hydrating Cream", "Shea Butter", "Non-Greasy", "24H Moisture"],
+        costingHtml: createCostingTable(28.80, 30, { total: 58.80, srp: 105, profit: 46.20, markupLabel: 'Markup (78.57%)' }),
+        whatFor: "Deep moisturizing lotion that softens dry patches and restores skin elasticity with non-greasy absorption and scent lingering.\n*Best applied right after shower."
+      },
+      "hand cream": {
+        name: "Hand Cream",
+        img: "hand.jpg",
+        pills: ["Hand Repair", "Quick Absorbing", "Protective", "Velvety Finish"],
+        costingHtml: createCostingTable(7.34, 25, { total: 32.34, srp: 48.51, profit: 16.17 }),
+        whatFor: "Intensive skin barrier hand cream designed to protect palms and cuticles from frequent washing, dryness, and harsh weather.\n*Recommended for daily pocket carry."
+      },
+      "bath bomb": {
+        name: "Bath Bomb",
+        img: "bomb.jpg",
+        pills: ["Spa Experience", "Epsom Salt", "Relaxing Aromatherapy", "Effervescent"],
+        costingHtml: createCostingTable(74.94, 20, { total: 94.94, srp: 142.41, profit: 47.47 }),
+        whatFor: "Effervescent aromatherapy bath sphere designed to dissolve in warm water, releasing soothing minerals and aromatic oils for stress relief."
+      },
+      "body scrub": {
+        name: "Body Scrub",
+        img: "scrub.jpg",
+        pills: ["Exfoliating Scrub", "Smooth Skin", "Natural Sugar/Salt", "Deep Renewal"],
+        costingHtml: createCostingTable(67.37, 30, { total: 97.37, srp: 146.06, profit: 48.69 }),
+        whatFor: "Gentle botanical body scrub formulated with fine exfoliants to sweep away dead skin cells, refine texture, and leave skin velvety soft.\n*Recommended 2-3 times per week."
+      },
+      "hand sanitizer": {
+        name: "Hand Sanitizer Gel",
+        img: "gel.jpg",
+        pills: ["Antibacterial", "70% Isopropyl", "Aloe Hydration", "Fast Drying"],
+        costingHtml: createCostingTable(18.34, 18, { total: 36.34, srp: 54.51, profit: 18.17 }),
+        whatFor: "Instant rinse-free hand gel formulated with 70% alcohol and moisturizing aloe vera to eliminate germs while keeping hands soft."
+      },
+      "hand sanitizer (spray on)": {
+        name: "Hand Sanitizer (Spray On)",
+        img: "sanitizer.jpg",
+        pills: ["Fine Mist Spray", "70% Alcohol", "Pocket Size", "Quick Dry"],
+        costingHtml: createCostingTable(5.14, 25, { total: 30.14, srp: 45.21, profit: 15.07 }),
+        whatFor: "Fast-drying micro-mist sanitizer spray powered by 70% ethyl alcohol and aloe hydrosol for quick touch-point and hand sanitization on the go."
+      },
+      "hand soap": {
+        name: "Hand Soap",
+        img: "hands.jpg",
+        pills: ["Foaming Cleanser", "Frequent Wash", "Moisture Guard", "Rich Lather"],
+        costingHtml: createCostingTable(22.30, 20, { total: 42.30, srp: 63.45, profit: 21.15 }),
+        whatFor: "Gentle foaming liquid hand soap designed for frequent washbasin use, eliminating dirt and bacteria without stripping skin hydration."
+      },
+      "feminine spray": {
+        name: "Feminine Spray",
+        img: "feminine.jpg",
+        pills: ["Intimate Hygiene", "pH Balanced", "Odor Control", "Gentle Mist"],
+        costingHtml: createCostingTable(38.88, 26, { total: 64.88, srp: 99, profit: 32.44 }),
+        whatFor: "Dermatologically tested pH-balanced refreshing intimate mist designed to maintain hygiene, prevent odor, and soothe skin."
+      },
+      "masculine wash": {
+        name: "Masculine Wash",
+        img: "masculine.jpg",
+        pills: ["Intimate Wash", "Cooling Sensation", "Odor Protection", "pH Neutral"],
+        costingHtml: createCostingTable(6.53, 25, { total: 31.53, srp: 47, profit: 15.77 }),
+        whatFor: "Specially formulated intimate cleansing gel for men with cooling menthol, tea tree extract, and scent fixatives to ensure freshness and odor control."
+      },
+      "roll on deodorant": {
+        name: "Roll-On Deodorant",
+        img: "deodorant.jpg",
+        pills: ["Roll-On", "Odor Control", "Quick Dry", "Gentle on Skin"],
+        costingHtml: createCostingTable(15.44, 30, { total: 45.44, srp: 68.16, profit: 22.72 }),
+        whatFor: "Roll-on deodorant that helps control underarm odor and keeps you feeling fresh all day, with a light signature scent and a smooth, quick-drying glide.\n*Apply on clean, dry underarms."
+      },
+      "hair shampoo": {
+        name: "Hair Shampoo",
+        img: "shampoo.jpg",
+        pills: ["Scalp Care", "Sulfate-Free", "Volumizing", "Nourishing"],
+        costingHtml: createCostingTable(45.55, 20, { total: 65.55, srp: 98.33, profit: 32.78 }),
+        whatFor: "Sulfate-free scalp cleansing shampoo designed to eliminate oil build-up, strengthen hair roots, and impart a subtle fresh aroma."
+      },
+      "conditioner": {
+        name: "Conditioner",
+        img: "conditioner.jpg",
+        pills: ["Deep Conditioning", "Frizz Control", "Silky Smooth", "Detangling"],
+        costingHtml: createCostingTable(19, 21),
+        whatFor: "Deep conditioning treatment cream that detangles strands, tames frizz, and locks in moisture and woody scent notes."
+      },
+      "hair mist": {
+        name: "Hair Mist",
+        img: "hair.jpg",
+        pills: ["Hair Perfume", "Alcohol-Free", "Shine Enhancer", "Lightweight"],
+        costingHtml: createCostingTable(64.64, 25, { total: 93.64, srp: 140, profit: 46.82 }),
+        whatFor: "Alcohol-free scented hair spray that neutralizes odor from smoke/food while providing delicate fragrance and healthy gloss."
+      },
+      "dry shampoo powder": {
+        name: "Dry Shampoo Powder",
+        img: "powder.jpg",
+        pills: ["Oil Absorbing", "Instant Volume", "Translucent", "Scalp Refresh"],
+        costingHtml: createCostingTable(40, 30, { total: 70, srp: 105, profit: 35 }),
+        whatFor: "Oil-absorbing translucent rice powder that instantly refreshes limp hair, absorbs excess scalp grease, and restores volume between wash days."
+      },
+      "face mist hydrating": {
+        name: "Face Mist - Hydrating",
+        img: "face.jpg",
+        pills: ["Facial Hydration", "Hyaluronic Acid", "Calming Mist", "Soothing"],
+        costingHtml: createCostingTable(9.98, 25, { total: 34.98, srp: 105, profit: 70.02, markupLabel: 'Markup (200.17%)' }),
+        whatFor: "Ultra-gentle facial hydration spray formulated with botanical water and hyaluronic acid to revive tired skin and set makeup."
+      },
+      "fine fragrance": {
+        name: "Fine Fragrance",
+        img: "perfume.jpg",
+        pills: ["Eau de Parfum", "Long-Lasting", "Woody Aromatic", "Premium Spray"],
+        costingHtml: createCostingTable(39, 75, { total: 114, srp: 250, profit: 136, markupLabel: 'Markup (119.30%)' }),
+        whatFor: "Concentrated Eau de Parfum fragrance spray featuring the rich Juniper, Suede, and Cedarwood scent pyramid with 8+ hours persistence."
+      },
+      "scented candle": {
+        name: "Scented Candle",
+        img: "scented.jpg",
+        pills: ["Soy Wax Blend", "40+ Hour Burn", "Aromatherapy", "Lead-Free Wick"],
+        costingHtml: createCostingTable(42.55, 40, { total: 82.55, srp: 123.83, profit: 41.28 }),
+        whatFor: "Hand-poured soy wax candle formulated for wide room scent diffusion, creating a calm and luxurious indoor ambient atmosphere."
+      },
+      "essential oil": {
+        name: "Essential Oil",
+        img: "oil.jpg",
+        pills: ["100% Pure Blend", "Diffuser Drop", "Room Fragrance", "Concentrate"],
+        costingHtml: createCostingTable(26, 20, { total: 46, srp: 69, profit: 23 }),
+        whatFor: "Undiluted fragrance oil blend crafted for ultrasonic diffusers, potpourri, and room scenting devices."
+      },
+      "pillow mist room linen": {
+        name: "Pillow Mist",
+        img: "room.jpg",
+        pills: ["Linen Spray", "Sleep Sanctuary", "Relaxing Aroma", "Bedding Fresh"],
+        costingHtml: createCostingTable(18, 22),
+        whatFor: "Soothing linen and room mist designed to spray on bed sheets, pillows, and curtains to promote a tranquil relaxation environment."
+      },
+      "essential air freshener car": {
+        name: "Car Air Freshener",
+        img: "car.jpg",
+        pills: ["Car Diffuser", "Wooden Cap", "Continuous Release", "Auto Odor Control"],
+        costingHtml: createCostingTable(2.44, 20, { total: 22.44, srp: 60, profit: 37.56, markupLabel: 'Markup (167.38%)' }),
+        whatFor: "Hanging glass vessel with permeable wooden cap designed for slow, continuous diffusion of fresh woody fragrance inside vehicle interiors."
+      }
+    };
+
+    /* OPEN PRODUCT MODAL */
+    function openProductByKey(key) {
+      const data = productDatabase[key.toLowerCase()];
+      if (!data) return;
+
+      document.getElementById('mName').innerText = data.name;
+      document.getElementById('mImg').style.backgroundImage = `url('${data.img}')`;
+      
+      const pillsContainer = document.getElementById('mPillsContainer');
+      pillsContainer.innerHTML = '';
+      data.pills.forEach(pillText => {
+        const span = document.createElement('span');
+        span.className = 'pill-tag';
+        span.innerText = pillText;
+        pillsContainer.appendChild(span);
+      });
+
+      document.getElementById('mWhatFor').innerText = data.whatFor;
+      document.getElementById('mCostingContainer').innerHTML = data.costingHtml;
+
+      document.getElementById('productDetailModal').style.display = 'flex';
+    }
+
+    /* FEATURE 1: INTERACTIVE SCENT PYRAMID LOGIC */
+    function selectPyramid(layer) {
+      document.querySelectorAll('.pyramid-level').forEach(el => el.classList.remove('active'));
+      document.getElementById('pyr-' + layer).classList.add('active');
+
+      const title = document.getElementById('p-title');
+      const desc = document.getElementById('p-desc');
+      const lab = document.getElementById('p-lab');
+
+      if (layer === 'top') {
+        title.innerText = "Top Notes: Immediate Fresh Impact";
+        desc.innerText = "Provides immediate fresh, aromatic top impact. Highly volatile molecules ideal for hair mists, face mists, and room fresheners.";
+        lab.innerText = "Evaporates within 15–30 minutes on skin; optimized for top notes in spray formats.";
+      } else if (layer === 'heart') {
+        title.innerText = "Heart Notes: Warm & Luxurious Core";
+        desc.innerText = "Rich Suede, Coffee, and Tobacco notes give warmth and luxury feel, perfect for fine fragrances, body lotions, and hand creams.";
+        lab.innerText = "Lasts 2–4 hours; acts as the primary character anchor for body care formulations.";
+      } else if (layer === 'base') {
+        title.innerText = "Base Notes: Deep Fixative Foundation";
+        desc.innerText = "Long-lasting Cedarwood, Oak, and Patchouli fixatives that linger on skin and prolong scent throw in candles and diffusers.";
+        lab.innerText = "Lingers 6–12+ hours; provides grounding stability and long-term scent longevity.";
+      }
+    }
+
+    /* CONTACTS: TOAST, COPY, TOPIC CHIPS & INQUIRY FORM */
+    const CONTACT_EMAIL = 'lab.formula@calvinklein.com';
+    let toastTimer;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.innerText = msg;
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function copyText(text, label) {
+      const done = () => showToast(label + ' copied \u2713');
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
+      }
+    }
+
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); cb(); } catch (e) { showToast('Press Ctrl+C to copy'); }
+      document.body.removeChild(ta);
+    }
+
+    function setTopic(btn, topic, starter) {
+      document.getElementById('cf-topic').value = topic;
+      const msg = document.getElementById('cf-message');
+      if (!msg.value.trim()) msg.value = starter;
+      document.querySelectorAll('.topic-chip').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      msg.focus();
+      msg.setSelectionRange(msg.value.length, msg.value.length);
+    }
+
+    function sendInquiry(e) {
+      e.preventDefault();
+      const name = document.getElementById('cf-name').value.trim();
+      const contact = document.getElementById('cf-contact').value.trim();
+      const topic = document.getElementById('cf-topic').value;
+      const message = document.getElementById('cf-message').value.trim();
+      const subject = 'Calvin Klein Free \u2013 ' + topic;
+      const body = 'Hi Calvin Klein Free team,\n\n' + message + '\n\n\u2014 ' + name + '\nReach me at: ' + contact;
+      window.location.href = 'mailto:' + CONTACT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      showToast('Opening your email app\u2026');
+    }
+
+    /* TARGET MARKET */
+    const TARGET_SEGMENTS = [
+      {
+        id: 'pros', emoji: '\u{1F9D1}\u200D\u{1F4BC}', name: 'Young Professionals', short: 'Ages 22\u201335 \u00B7 office, commute, gym',
+        tagline: 'Fresh from the first meeting to the last train home.',
+        who: ['Ages 22\u201335, working in offices or hybrid setups', 'Always on the go: commute, gym, after-work plans', 'Discover and buy through social media and online shops'],
+        needs: ['Grab-and-go scent that lasts all day', 'Small, bag-friendly formats', 'A signature scent that feels clean and put-together'],
+        products: ['hair mist', 'face mist hydrating', 'hand sanitizer (spray on)', 'hand cream', 'roll on deodorant', 'fine fragrance']
+      },
+      {
+        id: 'home', emoji: '\u{1F3E1}', name: 'Home Comfort Seekers', short: 'Ages 25\u201345 \u00B7 WFH, couples, families',
+        tagline: 'Turn every room into a calm, woody sanctuary.',
+        who: ['Ages 25\u201345, working or studying from home', 'Couples and young families who enjoy a cozy space', 'Treat self-care and ambiance as a daily ritual'],
+        needs: ['Relaxing scent for evenings and sleep', 'Home scents that match their body-care routine', 'Gentle, real-ingredient products'],
+        products: ['scented candle', 'pillow mist room linen', 'essential oil', 'bath bomb', 'body lotion']
+      },
+      {
+        id: 'gift', emoji: '\u{1F381}', name: 'Gift Givers', short: 'Ages 20\u201350 \u00B7 birthdays, holidays, thank-yous',
+        tagline: 'A thoughtful gift that actually smells expensive.',
+        who: ['Ages 20\u201350 shopping for friends, family, and officemates', 'Peak buying: birthdays, Christmas, Valentine\u2019s, Mother\u2019s/Father\u2019s Day', 'Judge a gift by its look and packaging'],
+        needs: ['Beautiful packaging that is ready to give', 'Affordable gifts that still feel premium', 'Bundles so they don\u2019t have to choose'],
+        products: ['fine fragrance', 'bath bomb', 'body soap bar', 'scented candle', 'body scrub']
+      },
+      {
+        id: 'drivers', emoji: '\u{1F697}', name: 'Drivers & Commuters', short: 'Car owners \u00B7 ride-hailing \u00B7 delivery riders',
+        tagline: 'Keep every ride fresh and clean.',
+        who: ['Car owners, ride-hailing and delivery drivers', 'Spend hours inside a vehicle every day', 'Want something cheap, easy, and long-lasting'],
+        needs: ['Odor control and a fresh, woody car scent', 'Quick hand hygiene between trips', 'Low-price items they can buy in multiples'],
+        products: ['essential air freshener car', 'hand sanitizer (spray on)', 'hand sanitizer', 'essential oil']
+      },
+      {
+        id: 'men', emoji: '\u{1F9D4}', name: 'Men\u2019s Grooming', short: 'Ages 18\u201345 \u00B7 woody, clean, low-fuss',
+        tagline: 'Cedar, oak and suede \u2014 no fuss, all character.',
+        who: ['Ages 18\u201345, from students to working dads', 'Prefer a simple routine with a few good products', 'Drawn to woody, aromatic, masculine scents'],
+        needs: ['A scent that works across wash, hair, and fragrance', 'Value for money', 'Products that feel clean without being flowery'],
+        products: ['masculine wash', 'hair shampoo', 'conditioner', 'roll on deodorant', 'dry shampoo powder', 'fine fragrance']
+      },
+      {
+        id: 'resellers', emoji: '\u{1F6CD}\uFE0F', name: 'Resellers & Small Shops', short: 'Online sellers \u00B7 salons \u00B7 sari-sari & gift shops',
+        tagline: 'A full scent line with healthy margins per unit.',
+        who: ['Online sellers, salons, spas, and small retail shops', 'Want a ready-to-sell brand with a consistent scent', 'Compare cost, SRP, and profit before ordering'],
+        needs: ['Clear costing and suggested retail prices', 'Products with strong profit per unit', 'A wide range to fill a shelf or a store page'],
+        products: ['fine fragrance', 'face mist hydrating', 'body scrub', 'bath bomb', 'hair mist', 'scented candle']
+      }
+    ];
+
+    function getPricing(key) {
+      const data = productDatabase[key];
+      if (!data) return null;
+      const tmp = document.createElement('div');
+      tmp.innerHTML = data.costingHtml;
+      const rows = Array.from(tmp.querySelectorAll('tr'));
+      const val = (label) => {
+        const r = rows.find(r => r.children[0] && r.children[0].textContent.trim().startsWith(label));
+        return r ? parseFloat(r.children[1].textContent.replace(/[^0-9.]/g, '')) || 0 : 0;
+      };
+      return { name: data.name, total: val('Total Cost'), srp: val('SRP'), profit: val('Profit per Unit') };
+    }
+
+    const peso = (n) => '\u20B1' + n.toLocaleString('en-PH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    function selectSegment(id) {
+      const seg = TARGET_SEGMENTS.find(x => x.id === id);
+      if (!seg) return;
+      document.querySelectorAll('.tm-seg').forEach(b => b.classList.toggle('active', b.dataset.id === id));
+
+      const li = (arr) => arr.map(t => '<li>' + t + '</li>').join('');
+      const chips = seg.products.map(k => {
+        const p = getPricing(k);
+        return p ? '<button type="button" class="tm-prod" onclick="openProductByKey(\'' + k + '\')">' + p.name + '<b>' + peso(p.srp) + '</b></button>' : '';
+      }).join('');
+
+      document.getElementById('tm-detail').innerHTML =
+        '<div class="tm-head"><div class="tm-head-emoji">' + seg.emoji + '</div><div><h3>' + seg.name + '</h3><p class="tm-tag">' + seg.tagline + '</p></div></div>' +
+        '<div class="tm-cols"><div><h4>Who they are</h4><ul>' + li(seg.who) + '</ul></div><div><h4>What they want</h4><ul>' + li(seg.needs) + '</ul></div></div>' +
+        '<h4>Best-fit products <span style="color:var(--text-muted);font-weight:400;font-size:0.8rem;">(click for costing)</span></h4><div class="tm-prods">' + chips + '</div>';
+    }
+
+    function initTargetMarket() {
+      const srps = Object.keys(productDatabase).map(k => getPricing(k).srp).filter(n => n > 0);
+      document.getElementById('tm-price-range').innerText = peso(Math.min(...srps)) + ' \u2013 ' + peso(Math.max(...srps));
+      document.getElementById('tm-seg-list').innerHTML = TARGET_SEGMENTS.map(x =>
+        '<button type="button" class="tm-seg" data-id="' + x.id + '" onclick="selectSegment(\'' + x.id + '\')"><span class="tm-seg-emoji">' + x.emoji + '</span><span><b>' + x.name + '</b><small>' + x.short + '</small></span></button>'
+      ).join('');
+      selectSegment(TARGET_SEGMENTS[0].id);
+    }
+
+    /* NAVIGATION & FILTERS */
+    function updateSlide() {
+      document.querySelectorAll('.slide').forEach((s, idx) => {
+        s.classList.toggle('active', idx + 1 === currentSlide);
+      });
+      document.querySelectorAll('nav a').forEach((a, idx) => {
+        a.classList.toggle('active', idx + 1 === currentSlide);
+      });
+      document.getElementById('slide-counter').innerText = `SLIDE 0${currentSlide} / 0${totalSlides}`;
+      document.getElementById('progressBar').style.width = `${(currentSlide / totalSlides) * 100}%`;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextSlide() { if (currentSlide < totalSlides) { currentSlide++; updateSlide(); } }
+    function prevSlide() { if (currentSlide > 1) { currentSlide--; updateSlide(); } }
+    function goToSlide(n) { currentSlide = n; updateSlide(); }
+
+    function filterCategory(cat, btn) {
+      selectedCategory = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      document.querySelectorAll('.category-column').forEach(col => {
+        const catName = col.getAttribute('data-cat');
+        let visibleCount = 0;
+        col.querySelectorAll('li').forEach(li => {
+          const prodName = li.getAttribute('data-name');
+          const matchesCategory = (selectedCategory === 'all' || catName === selectedCategory);
+          const matchesSearch = prodName.includes(query);
+          if (matchesCategory && matchesSearch) { li.style.display = 'block'; visibleCount++; }
+          else { li.style.display = 'none'; }
+        });
+        col.style.display = visibleCount > 0 ? 'flex' : 'none';
+      });
+    }
+
+    function openPostModal(title, date, img, desc) {
+      document.getElementById('pTitle').innerText = title;
+      document.getElementById('pDate').innerText = 'Posted on ' + date;
+      document.getElementById('pImg').style.backgroundImage = `url('${img}')`;
+      document.getElementById('pDesc').innerText = desc;
+      document.getElementById('postDetailModal').style.display = 'flex';
+    }
+
+    function closePostModal() { document.getElementById('postDetailModal').style.display = 'none'; }
+    function closeDetailModal() { document.getElementById('productDetailModal').style.display = 'none'; }
+
+    document.addEventListener('keydown', (e) => {
+      const tag = (e.target && e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || (e.target && e.target.isContentEditable);
+      if (e.key === 'Escape') { closeDetailModal(); closePostModal(); }
+      if (typing) return;
+      if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'Escape') { closeDetailModal(); closePostModal(); }
+    });
+
+    initTargetMarket();
+  </script>
+</body>
+</html>
